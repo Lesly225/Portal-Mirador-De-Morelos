@@ -1,0 +1,40 @@
+<section>
+  <div class="w-full flex justify-between">
+
+    <div class="pb-3 border-b-8">
+      <h2 class="text-4xl font-bold">Noticias más recientes</h2>
+    </div>
+
+    <!-- * Botones de desplazamiento  -->
+    <div class="flex gap-8 items-end">
+
+      <button class="cursor-pointer rounded-full bg-gray-300/50 active:bg-gray-400/50
+                    duration-400 w-fit h-fit active:scale-110"
+              (click)="scrollLeft()"
+      >
+          <lucide-angular [img]="ChevronLeft" class="size-8"></lucide-angular>
+      </button>
+
+      <button class="cursor-pointer rounded-full bg-gray-300/50 active:bg-gray-400/50
+                    duration-400 w-fit h-fi active:scale-110"
+              (click)="scrollRight()"
+      >
+          <lucide-angular [img]="ChevronRight" class="size-8"></lucide-angular>
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- * Tarjetas de noticias  -->
+  <div #cardsContainer
+       class="py-8 flex gap-5 overflow-x-hidden"
+  >
+    @for(card of newInfo(); track $index){
+      <app-news-card [cardInfo]="card"></app-news-card>
+    }
+  </div>
+
+
+
+</section>

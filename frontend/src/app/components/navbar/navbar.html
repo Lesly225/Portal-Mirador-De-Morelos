@@ -1,0 +1,18 @@
+<div class="bg-[#FDD7CC] w-full flex items-center px-8 py-2 justify-center lg:justify-between
+            fixed top-0 z-50">
+  <!-- LOGO -->
+  <div class="hidden lg:block">
+    <img src="logo.png" class="w-45 h-12" />
+  </div>
+
+  <!-- BUTTONS  -->
+  <nav class="font-bold text-xl flex items-center gap-10">
+    <a class="cursor-pointer" routerLink="/home"> Inicio </a>
+    <a class="cursor-pointer" routerLink="/places"> Lugares </a>
+    <a class="cursor-pointer"> Noticias </a>
+    <a class="cursor-pointer"> Publicaciones </a>
+    <a class="cursor-pointer">
+      <lucide-angular [img]="User" class="size-8 stroke-2"></lucide-angular>
+    </a>
+  </nav>
+</div>

@@ -1,0 +1,32 @@
+<section class="bg-amber-950 relative w-auto h-[530px]">
+
+  <img [src]="banner().img" class="object-cover w-full h-full" />
+
+  <div
+    class="bg-linear-to-r from-gray-950 to-transparent absolute top-0 left-0 w-full h-full opacity-90"
+  ></div>
+
+  <!-- Content -->
+  <div class="absolute top-0 left-0 w-full h-full px-8 flex flex-col justify-center">
+    <div class="flex flex-col gap-5 md:w-3xl w-full">
+      <!-- Title -->
+      <div>
+        <span class="md:text-6xl text-5xl text-white font-bold">
+          {{ banner().title }}
+        </span>
+      </div>
+
+      <!-- Description  -->
+      <div class="text-white text-xl">
+        {{ banner().description }}
+      </div>
+
+      <!-- Button -->
+      <a [class]="banner().buttonClass">
+        {{ banner().buttonText }}
+      </a>
+    </div>
+  </div>
+
+
+</section>
