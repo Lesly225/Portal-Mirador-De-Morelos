@@ -1,0 +1,75 @@
+@if(activedDashboard()){
+  <div class="fixed top-0 left-0 w-screen h-screen"
+       (click)="emitCloseDashboard()"
+  ></div>
+
+  <div class="bg-white w-60 h-auto absolute z-60 top-8 -right-1 shadow-xl
+              flex flex-col p-5 rounded-md"
+  >
+
+    @if( !authService.loginSuccessful() ){
+      <div class="flex w-full gap-2 cursor-pointer hover:bg-gray-100
+                rounded-md px-2 py-2 duration-200">
+
+        <lucide-angular [img]="Lock"
+                        class="stroke-3"
+        ></lucide-angular>
+
+        <span class="text-md block hover:text-stone-700 duration-150 delay-75"
+              (click)="toggleLoginModal()"
+              (click)="emitCloseDashboard()"
+        >
+          Iniciar sesión
+        </span>
+
+     </div>
+    }
+
+    @else {
+
+        <div class="flex items-center gap-3 px-2">
+          <img [src]="`${ imgUrl }${ authService.userData()?.imagenPerfil }`"
+               class="size-10 rounded-full">
+
+          <span class="text-md font-normal">
+            {{ authService.userData()?.nombre }} {{ authService.userData()?.apellidoP }} {{ authService.userData()?.apellidoM }}
+          </span>
+        </div>
+
+        <div class="flex w-full gap-2 cursor-pointer hover:bg-gray-100
+                  rounded-md px-2 py-2 duration-200">
+
+          <lucide-angular [img]="User"
+                          class="stroke-3"
+          ></lucide-angular>
+
+          <span class="text-md block hover:text-stone-700 duration-150 delay-75"
+                [routerLink]="['/profile', authService.userData()?.id]"
+                (click)="emitCloseDashboard()"
+          >
+            Ver perfil
+          </span>
+        </div>
+
+        <div class="flex w-full gap-2 cursor-pointer hover:bg-gray-100
+                  rounded-md px-2 py-2 duration-200">
+
+          <lucide-angular [img]="LogOut"
+                          class="stroke-3"
+          ></lucide-angular>
+
+          <span class="text-md block hover:text-stone-700 duration-150 delay-75"
+                (click)="logout()"
+          >
+            Cerrar sesión
+          </span>
+        </div>
+
+    }
+
+  </div>
+}
+
+<app-login-modal [activeLogin]="activedLoginModal"
+                 (disableLoginModal)="toggleLoginModal()"
+></app-login-modal>

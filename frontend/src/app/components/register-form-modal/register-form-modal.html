@@ -1,0 +1,102 @@
+@if( activedRegister() ) {
+    <div class="fixed top-0 left-0 bg-gray-800/50 h-screen w-screen z-60 duration-150 flex justify-center items-center"
+         (click)="emitDisable()"
+         [ngClass]="{'animate-fade-out-left':fadeOut}"
+    >
+      <div class="h-1/2 md:h-11/12 w-5/6 md:w-1/2 flex bg-white rounded-2xl animate-fade-in-right
+                  overflow-y-auto"
+           (click)="$event.stopPropagation()"
+      >
+
+        <!-- Contenido  -->
+        <div class="px-20 py-10 w-full h-full flex flex-col gap-6 justify-start">
+
+            <h1 class="text-4xl font-extrabold w-fit mx-auto">
+                REGISTRO
+            </h1>
+
+            <!-- Credenciales de usuario  -->
+            <form class="flex flex-col gap-3" [formGroup]="userRegisterForm">
+                <!-- Nombre -->
+                <fieldset class="flex flex-col gap-3 w-full">
+                  <label for="name" class="font-bold text-gray-700">
+                      Nombre
+                  </label>
+
+                  <input type="text" id="name" name="name"
+                         class="focus:ring-2 focus:ring-stone-400 transition-all ease-out duration-150
+                                  outline-0 border-2 border-stone-300 py-2 px-2 font-normal"
+                         formControlName="name">
+                </fieldset>
+
+                  <!-- Apellido parterno -->
+                <fieldset class="flex flex-col gap-3 w-full">
+                  <label for="lastname_p" class="font-bold text-gray-700">
+                      Apellido paterno
+                  </label>
+
+                  <input type="text" id="lastname_p" name="lastname_p"
+                          class="focus:ring-2 focus:ring-stone-400 transition-all ease-out duration-150
+                                  outline-0 border-2 border-stone-300 py-2 px-2 font-normal"
+                         formControlName="lastname_p">
+                </fieldset>
+
+                <!-- Apellido materno -->
+                <fieldset class="flex flex-col gap-3 w-full">
+                  <label for="lastname_m" class="font-bold text-gray-700">
+                      Apellido materno
+                  </label>
+
+                  <input type="text" id="lastname_m" name="lastname_m"
+                          class="focus:ring-2 focus:ring-stone-400 transition-all ease-out duration-150
+                                  outline-0 border-2 border-stone-300 py-2 px-2 font-normal"
+                         formControlName="lastname_m">
+
+                </fieldset>
+
+                <!-- Correo -->
+                <fieldset class="flex flex-col gap-3 w-full">
+                  <label for="email" class="font-bold text-gray-700">
+                      Correo
+                  </label>
+
+                  <input type="email" id="email" name="email"
+                          class="focus:ring-2 focus:ring-stone-400 transition-all ease-out duration-150
+                                  outline-0 border-2 border-stone-300 py-2 px-2 font-normal"
+                         formControlName="email">
+                </fieldset>
+
+                <!-- Contraseña -->
+                <fieldset class="flex flex-col gap-3 w-full">
+                  <label for="password" class="font-bold text-gray-700">
+                      Contraseña
+                  </label>
+
+                  <input type="password" id="password" name="password"
+                          class="focus:ring-2 focus:ring-stone-400 transition-all ease-out duration-150
+                                  outline-0 border-2 border-stone-300 py-2 px-2 font-normal"
+                         formControlName="password">
+                </fieldset>
+
+            @if(invalid){
+              <span class="text-red-950 mx-auto -mb-5">Hay campos vacios</span>
+            }
+
+            <div class="flex flex-col gap-5">
+              <button class="bg-green-900 text-xl font-bold text-white w-full px-8 py-2
+                                cursor-pointer hover:bg-green-800 delay-100
+                                duration-250 mb-10 mt-5"
+                      (click)="handleSubmit()"
+              >
+                  Registrarse
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  }

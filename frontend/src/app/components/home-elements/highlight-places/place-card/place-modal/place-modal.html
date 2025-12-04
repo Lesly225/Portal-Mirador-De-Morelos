@@ -1,0 +1,102 @@
+@if( activedModal() ) {
+  <div class="fixed top-0 left-0 bg-gray-800/50 h-screen w-screen z-60 duration-150 flex justify-center items-center"
+       (click)="emitCloseModal()"
+       [ngClass]="{'animate-fade-out-left':fadeOut}"
+  >
+    <div class="h-10/12 w-3/4 flex flex-col semimd:flex-row bg-[#2B2A2A] rounded-2xl animate-fade-in-right
+                overflow-y-auto semimd:overflow-y-hidden"
+         (click)="$event.stopPropagation()"
+    >
+      <img [src]="`${ imgUrl }${ placeInfo()?.imagen }`"
+           class="w-full semimd:w-xl semimd:h-full object-cover rounded-2xl px-10 pt-10 semimd:p-0">
+
+      <!-- Contenido  -->
+      <div class="px-16 py-10 semimd:p-10 flex flex-col gap-6 semimd:overflow-y-scroll">
+
+        <!-- Titulo y descripcion  -->
+        <div class="flex flex-col gap-4">
+          <span class="text-white text-4xl font-bold">
+            {{ placeInfo()?.nombre }}
+          </span>
+          <p class="text-white font-normal">
+            {{ placeInfo()?.descripcion }}
+          </p>
+        </div>
+
+        <!-- Medios de contacto -->
+        <div class="flex flex-col gap-6 pr-10 ">
+
+          <div class="flex gap-3 items-center pl-3 font-extralight">
+            <lucide-angular [img]="MapPin" class="stroke-2 stroke-white size-8"></lucide-angular>
+            <a [href]="placeInfo()?.ubicacion" class="text-white text-md" target="_blank" rel="noopener noreferrer">
+              {{ placeInfo()?.ubicacion }}
+            </a>
+          </div>
+
+          <div class="flex gap-3 items-center pl-3 font-extralight">
+            <lucide-angular [img]="Phone" class="stroke-2 stroke-white size-8"></lucide-angular>
+            <span class="text-white text-md">
+              {{ placeInfo()?.telefono }}
+            </span>
+          </div>
+
+          <div class="flex flex-col font-extralight gap-3">
+
+            <div class="flex items-center gap-3 pl-3">
+              <lucide-angular [img]="Calendar" class="stroke-2 stroke-white size-8"></lucide-angular>
+              <span class="text-white text-md">Horarios</span>
+              <lucide-angular [img]="ChevronDown"
+                            class="stroke-2 stroke-white size-5 -ml-1 -mb-1 cursor-pointer"
+                            (click)="toggleSchedule()"
+              ></lucide-angular>
+            </div>
+
+
+
+            @if (showSchedule) {
+              <div class="flex flex-col gap-3 pl-4 animate-slide-in-right">
+                @for (horario of placeInfo()?.horarios; track $index) {
+                  <span class="text-white text-md pl-3">
+                    <span class="font-bold">{{ horario.dia }}</span>
+                    {{ horario.horaApertura }} a
+                    {{ horario.horaCierre }}
+                  </span>
+                }
+              </div>
+            }
+
+          </div>
+
+          @for (url of placeInfo()?.urls; track $index) {
+
+            @if(url.tipo == 'instagram'){
+              <div class="flex gap-3 items-center pl-3 font-extralight">
+                <lucide-angular [img]="Instagram" class="stroke-2 stroke-white size-8"></lucide-angular>
+                <a [href]="url.url" class="text-white text-md">{{ url.url }}</a>
+              </div>
+            }
+
+            @if(url.tipo == 'facebook'){
+              <div class="flex gap-3 items-center pl-3 font-extralight">
+                <lucide-angular [img]="Facebook" class="stroke-2 stroke-white size-8"></lucide-angular>
+                <a [href]="url.url" class="text-white text-md">{{ url.url }}</a>
+              </div>
+            }
+
+            @if(url.tipo == 'sitio_web'){
+              <div class="flex gap-3 items-center pl-3 font-extralight">
+                <lucide-angular [img]="House" class="stroke-2 stroke-white size-8"></lucide-angular>
+                <a [href]="url.url" class="text-white text-md">{{ url.url }}</a>
+              </div>
+            }
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+}

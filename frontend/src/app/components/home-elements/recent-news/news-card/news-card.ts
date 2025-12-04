@@ -1,14 +1,20 @@
-import { Component, input, signal } from '@angular/core';
-import NewCard from '../../../../models/home-models/NewCard';
+import { Component, input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { New } from '../../../../interfaces/new-interface';
+import { RouterLink } from '@angular/router';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-news-card',
-  imports: [],
+  imports: [DatePipe,RouterLink],
   templateUrl: './news-card.html',
   styles: ``,
 })
 export class NewsCard {
 
-  cardInfo = input.required<NewCard>();
+  imgUrl: string = `${ environment.apiUrl }/noticia/image/`
+
+  cardInfo = input.required<New>();
+  cardWidth = input.required<string>();
 
 }

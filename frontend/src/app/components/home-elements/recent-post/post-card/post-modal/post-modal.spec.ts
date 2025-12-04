@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlaceCardAlt } from './place-card-alt';
+import { PostModal } from './post-modal';
 
-describe('PlaceCardAlt', () => {
-  let component: PlaceCardAlt;
-  let fixture: ComponentFixture<PlaceCardAlt>;
+describe('PostModal', () => {
+  let component: PostModal;
+  let fixture: ComponentFixture<PostModal>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlaceCardAlt]
+      imports: [PostModal]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PlaceCardAlt);
+    fixture = TestBed.createComponent(PostModal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

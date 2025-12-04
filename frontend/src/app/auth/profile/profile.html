@@ -1,0 +1,59 @@
+<div class="min-h-screen flex flex-col">
+  <app-navbar></app-navbar>
+
+  <main class="bg-gray-50 w-full pt-12 grow">
+
+      <div class="px-10">
+          <div class="bg-white py-10 px-5 flex">
+            @if(!ownProfile){
+              <span class="text-2xl">Perfil no accesible</span>
+            }
+
+            @else{
+              <div class="flex flex-row gap-10 w-full items-start">
+
+                <div class="flex flex-col gap-8 sticky top-0">
+                  <app-user-data (openEditUser)="toggleActivedEditUser()">
+                  </app-user-data>
+                  <app-user-places (placeName)="selectPlace($event)"
+                                   (newPlace)="toggleNewPlaceForm()"
+                  ></app-user-places>
+                </div>
+
+                @if (placeActive) {
+                    <div class="flex flex-col gap-6 grow">
+                      <app-user-place [placeInfo]="selectedPlace()"
+                                      (updatePlacesList)="updatePlaces()"
+                      ></app-user-place>
+
+                      <div class="flex flex-col gap-6">
+                        <span class="text-3xl font-bold">PUBLICACIONES DEL NEGOCIO</span>
+                        <app-place-posts [placeId]="selectedPlace()?.id ?? null"></app-place-posts>
+                      </div>
+
+                    </div>
+                }
+
+              </div>
+            }
+
+          </div>
+      </div>
+
+  </main>
+
+  <footer>
+      <app-footer></app-footer>
+  </footer>
+</div>
+
+<app-new-place [activedForm]="activedNewPlaceForm"
+               (closeForm)="toggleNewPlaceForm()"
+               (updatePlacesList)="updatePlaces()"
+></app-new-place>
+
+<app-edit-data [activedEditForm]="activedEditUser()"
+               (disableEditForm)="toggleActivedEditUser()"
+               (updatedProfile)="updateProfile($event)"
+></app-edit-data>
+

@@ -1,0 +1,35 @@
+@if( activedPostModal() ) {
+    <div class="fixed top-0 left-0 bg-gray-800/50 h-screen w-screen z-60 duration-150 flex
+                justify-center items-center"
+         (click)="emitCLoseModal()"
+         [ngClass]="{'animate-fade-out-left':fadeOut}"
+    >
+      <div class="h-10/12 w-3/4 flex flex-col gap-5 bg-[#2B2A2A] rounded-2xl animate-fade-in-right
+                  overflow-y-auto px-15 py-10"
+           (click)="$event.stopPropagation()"
+      >
+
+        <!-- Usuario info -->
+        <div class="flex items-center gap-2">
+            @if(placeName()){
+              <span class="text-white text-md font-bold">{{placeName()}}</span>
+            }
+            <span class="text-white text-md"> · {{postInfo().fechaCreacion | date:'dd/MM/yyyy' }}</span>
+        </div>
+
+        <h2 class="text-4xl text-white font-extrabold">
+            {{postInfo().titulo.toUpperCase()}}
+        </h2>
+
+        <!-- Img de post -->
+       <img [src]="`${ imgUrl }${ postInfo().imagen }`"
+             class="object-cover h-122 w-full rounded-md mx-auto">
+
+        <!-- Descripcion del post -->
+        <p class="text-white text-xl ">
+            {{ postInfo().contenido }}
+        </p>
+
+      </div>
+    </div>
+}
